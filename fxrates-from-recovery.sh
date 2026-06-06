@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # required arguments: DB DATE
-# example: ~/fxrates/fxrates.db 2026-05-04
+# example: ~/storage/fxrates/fxrates.db 2026-05-04
 [[ $# -ne 2 ]] && exit 1
 
 DB=${1}

@@ -12,6 +12,9 @@ fxrates-from-adhoc.sh
 # run this to update data for a specific date
 fxrates-from-recovery.sh
 
+# run this to fill in missing data from a specific date
+fxrates-from-date.sh
+
 # example
 INR2USD.png
 
