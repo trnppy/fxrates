@@ -1,0 +1,31 @@
+
+# setup persistent storage for fxrates docker container 
+mkdir -p ~/storage/fxrates
+
+# verify fxrates-schema.sql content is
+CREATE TABLE IF NOT EXISTS exchange_rates (
+  date TEXT NOT NULL,
+  currency TEXT NOT NULL,
+  rate REAL NOT NULL,
+  PRIMARY KEY (date, currency)
+);
+
+# generate fxrates.db in ~/storage/fxrates
+if [[ ! -e ~/storage/fxrates/fxrates.db ]]; then
+    sqlite3 ~/storage/fxrates/fxrates.db < fxrates-schema.sql
+fi
+
+# update Dockerfile as necessary
+
+# update build as necessary
+
+# execute build to create the fxrates image
+bash build
+
+# run docker container, exposing tcp port 5000 for clients; update fxrates image name as required
+docker run -d --name fxrates -v ~/storage/fxrates/fxrates.db:/fxrates.db:ro -p 5000:5000/tcp --restart=always fxrates:1
+http://localhost:5000/fxplot
+
+# watch log
+sudo docker logs fxrates --follow
+
