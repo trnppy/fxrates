@@ -1,6 +1,6 @@
 
 sudo docker stop fxrates:1
-sudo docker fxrates:1
+sudo docker rm fxrates:1
 sudo docker rmi fxrates:1
 sudo docker build --no-cache -t fxrates:1 -f Dockerfile .
 
